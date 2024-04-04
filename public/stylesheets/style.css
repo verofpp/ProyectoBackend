@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  background-color: #D4FFC7;
+  padding-bottom: 80px;
+  min-height: 100vh;
+  position: relative;
+}
+
+header {
+  background-color: #80A841;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+img {
+  margin: 10px;
+  float: left;
+  display: block;
+  background-color: white;
+  height: auto;
+  width: 90px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  padding: 5px;
+  text-align: center;
+  color: #D4FFC7;
+  font-size: 30px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h3 {
+  color: #80A841;
+  padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 2px solid #334a0e;
+}
+
+th, td {
+  border: 1px solid #334a0e;
+  padding: 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+td {
+  background-color: #D4FFC7;
+}
+
+th {
+  background-color: #80A841;
+  color: #D4FFC7;
+  border: 2px solid #334a0e;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+p {
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+footer {
+  background-color: #80A841;
+  padding: 5px 0;
+  color: white;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-p {
+  font-family: Helvetica;
+  color: white;
+  margin: 10px;
+}
+
+a {
+  font-family: 'Courier New', Courier, monospace;
+  color: darkolivegreen;
+}
+
+form {
+  margin: 20px auto;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+button[type="button"],
+input[type="submit"] {
+  padding: 15px 30px;
+  margin: 10px;
+  background-color: #80A841;
+  font-family: 'Courier New', Courier, monospace;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: #609030;
+}
+
+form {
+  text-align: center;
+}
+

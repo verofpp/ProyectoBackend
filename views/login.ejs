@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <h1>Iniciar Sesión</h1>
+  </header>
+  <form action="http://localhost:3000/auth/login" method="POST">
+    <label for="Usuario">Usuario:</label>
+    <input type="text" id="Usuario" name="Usuario" required><br><br>
+
+    <label for="Password">Contraseña:</label>
+    <input type="password" id="Password" name="Password" required><br><br>
+
+    <input type="submit" value="Iniciar Sesión">
+  </form>
+  <footer>
+    <p class="footer-p">Verónica Parra 30.600.365<br>Cristhofer Solarte 30.959.561<br> <em>&copy; Backend 2024. Proyecto</em><br><a href="http://localhost:3000/">Principal</a></p>
+  </footer>
+</body>
+</html>
