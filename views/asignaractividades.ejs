@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Nueva Actividad a Sección</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <img src="https://uvm.edu.ve/wp-content/uploads/2022/10/LOGO-RIF.png" alt="Logo UVM">
+    <h1>Sistema de Gestión de la Universidad Valle del Momboy</h1>
+  </header>
+  <h3>Asignar Nueva Actividad a Sección</h3>
+  <form id="actividadForm" action="http://localhost:3000/actividadesseccion" method="POST">
+
+    <label for="actividad">Actividad:</label>
+    <select id="actividad" name="Id_Actividad">
+      <% actividades.forEach(actividad => { %>
+        <option value="<%= actividad.Id %>"><%= actividad.Id %></option>
+      <% }); %>
+    </select><br><br>
+    
+    <label for="clase">Clase:</label>
+    <select id="clase" name="Id_Clase">
+      <% clases.forEach(clase => { %>
+        <option value="<%= clase.Id %>"><%= clase.Id %></option>
+      <% }); %>
+    </select><br><br>
+
+    <label for="trimestre">Trimestre:</label>
+    <select id="trimestre" name="Trimestre">
+      <% trimestres.forEach(trimestre => { %>
+        <option value="<%= trimestre.Id %>"><%= trimestre.Id %></option>
+      <% }); %>
+    </select><br><br>
+
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="Fecha" required>
+
+    <button type="button" id="calcularFecha">Calcular Fecha</button><br>
+    <input type="submit" value="Asignar Actividad">
+  </form>
+  <footer>
+    <p class="footer-p">Verónica Parra 30.600.365<br>Cristhofer Solarte 30.959.561<br> <em>&copy; Backend 2024. Proyecto</em><br><a href="http://localhost:3000/">Principal</a></p>
+  </footer>
+
+  <script>
+        //Lógica para evaluar que las actividades seleccionadas en el formulario pertenezcan a la clase seleccionada//
+    document.getElementById('actividadForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe automáticamente
+      
+      const actividadId = document.getElementById('actividad').value;
+      const claseId = document.getElementById('clase').value;
+
+      // Realizar las solicitudes para obtener las materias correspondientes
+      const actividadResponse = await fetch(`http://localhost:3000/actividades/${actividadId}/materia`);
+      const claseResponse = await fetch(`http://localhost:3000/clases/${claseId}/materia`);
+      const actividadData = await actividadResponse.json();
+      const claseData = await claseResponse.json();
+
+      // Comparar las materias obtenidas
+      if (actividadData.materia !== claseData.materia) {
+        alert('La actividad no corresponde a la clase seleccionada');
+      } else {
+        // Si las materias coinciden, enviar el formulario
+        this.submit();
+      }
+    });
+
+        //Lógica para calcular la fecha indicada para las evaluaciones//
+  document.getElementById('calcularFecha').addEventListener('click', async function() {
+    const actividadId = document.getElementById('actividad').value;
+    const claseId = document.getElementById('clase').value;
+    const trimestreId = document.getElementById('trimestre').value;
+
+    // Realizar consultas a la base de datos para obtener semana, horario y fecha de inicio del trimestre
+    try {
+      const semanaResponse = await fetch(`http://localhost:3000/actividades/${actividadId}/semana`);
+      const semanaData = await semanaResponse.json();
+
+      const horarioResponse = await fetch(`http://localhost:3000/clases/${claseId}/horario`);
+      const horarioData = await horarioResponse.json();
+
+      const inicioTrimestreResponse = await fetch(`http://localhost:3000/trimestre/${trimestreId}/inicio`);
+      const inicioTrimestreData = await inicioTrimestreResponse.json();
+
+      // Calcular la fecha
+      const fechaInicioTrimestre = new Date(inicioTrimestreData.inicio);
+      const semana = semanaData.semana;
+      const horario = horarioData.horario;
+      
+      // Calcular la fecha sumando días equivalentes a la semana
+      const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+      let diaSemana = diasSemana.indexOf(horario.toLowerCase());
+
+      // Ajustar el día de la semana según la fecha de inicio del trimestre
+      const diaInicioTrimestre = fechaInicioTrimestre.getDay();
+      diaSemana = (diaSemana - diaInicioTrimestre + 7) % 7;
+
+      const fechaActividad = new Date(fechaInicioTrimestre);
+      fechaActividad.setDate(fechaInicioTrimestre.getDate() + (7 * (semana - 1)) + diaSemana);
+
+      // Formatear la fecha al formato 'YYYY-MM-DD'
+      const fechaFormateada = fechaActividad.toISOString().split('T')[0];
+
+      // Mostrar la fecha calculada en el input
+      document.getElementById('fecha').value = fechaFormateada;
+    } catch (error) {
+      console.error('Error al calcular la fecha:', error);
+      alert('Error al calcular la fecha. Por favor, inténtalo de nuevo.');
+    }
+  });
+  </script>
+</body>
+</html>
