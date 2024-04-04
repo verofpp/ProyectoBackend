@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <img src="https://uvm.edu.ve/wp-content/uploads/2022/10/LOGO-RIF.png" alt="Logo UVM">
+    <h1>Sistema de Gestión de la Universidad Valle del Momboy</h1>
+  </header>
+  <h3>Clases</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Profesor</th>
+        <th>Materia</th>
+        <th>Sección</th>
+        <th>Horario</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% resp.forEach(r => { %>
+            <tr>
+                <td><%= r.Id %></td>
+                <td><%= r.Id_Profesor %></td>
+                <td><%= r.Id_Materia %></td>
+                <td><%= r.Id_Sección %></td>
+                <td><%= r.Horario %></td>
+            </tr>
+        <% }) %>
+    </tbody>
+  </table>
+  <footer>
+    <p class="footer-p">Verónica Parra 30.600.365<br>Cristhofer Solarte 30.959.561<br> <em>&copy; Backend 2024. Proyecto</em><br><a href="http://localhost:3000/">Principal</a></p>
+  </footer>
+</body>
+</html>
