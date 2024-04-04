@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades de Sección</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+      body {
+        text-align: center;
+      }      
+    </style>
+</head>
+<body>
+  <header>
+    <img src="https://uvm.edu.ve/wp-content/uploads/2022/10/LOGO-RIF.png" alt="Logo UVM">
+    <h1>Sistema de Gestión de la Universidad Valle del Momboy</h1>
+  </header>
+  <h3>Actividades de Sección</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Actividad</th>
+        <th>Clase</th>
+        <th>Trimestre</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% resp.forEach(r => { %>
+        <tr>
+          <td><%= r.Id %></td>
+          <td><%= r.Id_Actividad %></td>
+          <td><%= r.Id_Clase %></td>
+          <td><%= r.Trimestre %></td>
+          <td><%= r.Fecha %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <a href="http://localhost:3000/asignaractividades/">Asignar Actividades a Secciones</a>
+  <footer>
+    <p class="footer-p">Verónica Parra 30.600.365<br>Cristhofer Solarte 30.959.561<br> <em>&copy; Backend 2024. Proyecto</em><br><a href="http://localhost:3000/">Principal</a></p>
+  </footer>
+</body>
+</html>
